@@ -4,11 +4,17 @@ public class Main {
     //SENHA DE COLABORADOR = 1234
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
+
+        //CRIAÇÃO DOS FILMES
+        Filme joker = new Suspense(0f, "Joker", "2 horas e 2 minutos", 0f,
+                                    "Todd Phillips", 18, new Gravadora("Universal"));
+
+        Filme seila = new Documentario()
+                
         System.out.println("""
                                  -_-_-_-_- Letterboxd -_-_-_-_-
                             
                             Aqui a sua opinião importa! Seja bem-vindo(a).
-                            
                             """);
         System.out.println("Agora, vamos fazer o seu cadastro." + "\n");
 
@@ -51,15 +57,19 @@ public class Main {
                     String senhaLogin = leitor.nextLine();
 
                     if (!emailOuUser.equals(email) && !emailOuUser.equals(username)) {
-                        System.out.println("E-mail ou user não encontrados." + "\n");
+                        System.out.println("""
+                                E-mail ou user não encontrados.
+                                """);
                     } else if (!senhaLogin.equals(senha)) {
-                        System.out.println("Senha incorreta." + "\n");
+                        System.out.println("""
+                                Senha incorreta.
+                                """);
+                        break;
                     } else {
-                        System.out.println("Seja bem-vindo(a)!");
+                        System.out.println("\n" + "Seja bem-vindo(a), " + u.getUser() + "!" + "\n");
                         acessoLogin = false;
 
                         boolean menuUsuario = true;
-
                         while (menuUsuario) {
                             System.out.println("""
                                                 [1] - Alterar dados cadastrais
@@ -70,6 +80,34 @@ public class Main {
                                                 
                                                 [0] - Sair
                                                 """);
+
+                            switch (leitor.nextInt()) {
+                                case 1:
+                                    System.out.println("""
+                                                -=-=-=-=- Trocar dados cadastrais -=-=-=-=-
+                                                
+                                                Dados atuais:
+                                                """);
+                                    System.out.println(u);
+
+                                    Utils.trocaCadastro(leitor, u);
+
+                                    System.out.println("Dados atualizados:" + "\n");
+                                    System.out.println(u);
+                                    break;
+
+                                case 2:
+
+
+                                case 0:
+                                    System.out.println("Sentiremos a sua falta. :(");
+                                    menuUsuario = false;
+                                    System.exit(0);
+                                    break;
+
+                                default:
+                                    System.out.println("Opção inválida!" + "\n");
+                            }
                         }
                     }
                     break;

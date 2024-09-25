@@ -4,10 +4,11 @@ public class Gravadora {
     private String nome;
     private ArrayList<Filme> filmes;
 
-    public Gravadora(String nome, Filme filme) {
+    public Gravadora(String nome) {
         this.nome = nome;
-        this.filmes.add(filme);
     }
 
-
+    public void addFilme (Filme filme) {
+        filmes.add(filme);
+    }
 }

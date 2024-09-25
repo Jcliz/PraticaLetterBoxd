@@ -1,16 +1,17 @@
 public class Filme {
     private String nome;
     private String duracao;
-    private int nota;
-    private String diretor;
+    private float nota;
+    private String direcao;
     private Gravadora gravadora;
     private int classificacao;
 
-    public Filme (String nome, String duracao, int nota, String diretor, Gravadora gravadora, int classificacao) {
+    public Filme (String nome, String duracao, float nota, String direcao,
+                  int classificacao, Gravadora gravadora) {
         this.nome = nome;
         this.duracao = duracao;
         this.nota = nota;
-        this.diretor = diretor;
+        this.direcao = direcao;
         this.gravadora = gravadora;
         this.classificacao = classificacao;
     }

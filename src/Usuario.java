@@ -22,4 +22,40 @@ public class Usuario {
     public void setBio (String bio) {
         this.bio = bio;
     }
+
+    @Override
+    public String toString () {
+        return  "-_-_-_-_-_-_-_-_-_-" + "\n" +
+                "E-mail: " + this.email + "\n" +
+                "Username: " + this.username + "\n" +
+                "Senha: " + this.senha + "\n" +
+                "Idade: " + this.idade + "\n" +
+                "Localização: " + this.localizacao + "\n" +
+                "Bio: " + this.bio + "\n" +
+                "-_-_-_-_-_-_-_-_-_-" + "\n";
+    }
+
+    public String getUser() {
+        return username;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setEmail (String email) {
+        this.email = email;
+    }
+
+    public void setUser(String username) {
+        this.username = username;
+    }
+
+    public void setSenha (String senha) {
+        this.senha = senha;
+    }
+
+    public void setIdade (int idade) {
+        this.idade = idade;
+    }
 }
