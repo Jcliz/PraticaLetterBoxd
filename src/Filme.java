@@ -15,4 +15,12 @@ public class Filme {
         this.gravadora = gravadora;
         this.classificacao = classificacao;
     }
+
+    public Gravadora getGravadora() {
+        return gravadora;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }

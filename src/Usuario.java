@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Usuario {
     private String email;
     private String username;
@@ -5,6 +7,7 @@ public class Usuario {
     private int idade;
     private String localizacao;
     private String bio;
+    private ArrayList<Filme> assistidos = new ArrayList<>();
 
     public Usuario (String email, String username, String senha, int idade, String localizacao, String bio) {
         this.email = email;
@@ -57,5 +60,9 @@ public class Usuario {
 
     public void setIdade (int idade) {
         this.idade = idade;
+    }
+
+    public void addAssistidos (Filme f) {
+        assistidos.add(f);
     }
 }

@@ -5,12 +5,36 @@ public class Main {
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
 
-        //CRIAÇÃO DOS FILMES
-        Filme joker = new Suspense(0f, "Joker", "2 horas e 2 minutos", 0f,
-                                    "Todd Phillips", 18, new Gravadora("Universal"));
+        //CRIAÇÃO DAS GRAVADORAS
+        Gravadora[] gravadoras = new Gravadora[] {
+                new Gravadora("Warner Bros"),
+                new Gravadora("Netflix"),
+                new Gravadora("A24")
+        };
 
-        Filme seila = new Documentario()
-                
+        //CRIAÇÃO DOS FILMES
+        Filme[] filmes = new Filme[] {
+                new Suspense(0f, "Joker", "2 horas e 2 minutos", 0f,
+                        "Todd Phillips", 18, gravadoras[0]),
+                new Documentario("Documentário sobre o rapper Travis Scott",
+                        "Look Mom I Can Fly", "1 hora e 24 minutos", 0f,
+                        "White Trash Tyler", 18, gravadoras[1]),
+                new Acao(0f, "Matrix", "2 horas e 16 minutos", 0f,
+                        "Lana Wachowski e Lilly Wachowski", 16, gravadoras[0]),
+                new Aventura("Vida de skatistas", "Mid 90's", "1 hora e 25 minutos",
+                        0f, "Jonah Hill", 18, gravadoras[2]),
+                new Comedia(0f, "Lady Bird", "1 hora e 34 minutos",
+                        0f, "Greta Gerwig", 16, gravadoras[2]),
+                new Romance("Amor entre diferentes classes", "Diário de Uma Paixão",
+                        "2 horas e 3 minutos", 0f, "Nick Cassavetes", 16, gravadoras[0]),
+                new Terror(0f, "A bruxa", "1 hora e 40 minutos",
+                        0f, "Robert Eggers", 18, gravadoras[1])
+        };
+
+        for (Filme filme : filmes) {
+            filme.getGravadora().addFilme(filme);
+        }
+
         System.out.println("""
                                  -_-_-_-_- Letterboxd -_-_-_-_-
                             
@@ -74,9 +98,13 @@ public class Main {
                             System.out.println("""
                                                 [1] - Alterar dados cadastrais
                                                 [2] - Adicionar um filme à lista de assistidos
-                                                [3] - Favoritar um filme
-                                                [4] - avaliar um filme
-                                                [5] - Detalhar um filme
+                                                [3] - Listar filmes assistidos
+                                                [4] - Favoritar um filme
+                                                [5] - Listar filmes favoritos
+                                                [6] - avaliar um filme
+                                                [7] - Listar avaliações
+                                                [8] - Detalhar um filme
+                                                [9] - Listar gravadoras
                                                 
                                                 [0] - Sair
                                                 """);
@@ -97,11 +125,28 @@ public class Main {
                                     break;
 
                                 case 2:
+                                    System.out.println("""
+                                            Qual filme você deseja adicionar?:""");
 
+                                    String nomeFilme = leitor.nextLine();
+
+                                    for (Filme filme : filmes) {
+                                        if (filme.getNome().equals(nomeFilme)) {
+                                            u.addAssistidos(filme);
+                                            System.out.println(filme.getNome() + " adicionado à lista com sucesso!");
+                                        } else {
+                                            System.out.println("""
+                                                    Filme inexistente.
+                                                    """);
+                                        }
+                                    }
+
+                                case 3:
+                                    
 
                                 case 0:
-                                    System.out.println("Sentiremos a sua falta. :(");
                                     menuUsuario = false;
+                                    System.out.println("Sentiremos a sua falta. :(");
                                     System.exit(0);
                                     break;
 
@@ -120,11 +165,18 @@ public class Main {
                             """);
                     int cod = leitor.nextInt();
 
-                    if (cod == 1234) {
-                        System.out.println("Seja bem-vindo(a)!");
-                        acessoLogin = false;
-                    } else {
+                    if (cod != 1234) {
                         System.out.println("Código incorreto." + "\n");
+
+                    } else {
+                        acessoLogin = false;
+                        System.out.println("Seja bem-vindo(a)!");
+
+                        boolean acessoColab = true;
+                        while (acessoColab) {
+
+                        }
+
                     }
                     break;
 

@@ -1,8 +1,9 @@
 public class Terror extends Filme{
     private float notaJumpscares;
 
-    public Terror (float notaJumpscares, String nome, String duracao, int nota, String diretor, Gravadora gravadora, int classificacao){
-        super(nome, duracao, nota, diretor, classificacao, gravadora);
+    public Terror (float notaJumpscares, String nome, String duracao, float nota, String direcao,
+                   int classificacao, Gravadora gravadora){
+        super(nome, duracao, nota, direcao, classificacao, gravadora);
         this.notaJumpscares = notaJumpscares;
     }
 
