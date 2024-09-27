@@ -163,6 +163,41 @@ public class Main {
                                     u.getAssistidos();
                                     break;
 
+                                case 4:
+                                    System.out.println("\n" + "Qual filme você deseja adicionar na lista de favoritos?:");
+
+                                    leitor.nextLine();
+                                    String nomeFilmeFav = leitor.nextLine();
+                                    System.out.println();
+
+                                    boolean vazioFav = true;
+
+                                    for (Filme filme : filmes) {
+                                        if (filme.getNome().equals(Utils.capitalize(nomeFilmeFav))) {
+                                            if (u.pegarListaFavoritos().contains(filme)) {
+                                                System.out.println(filme.getNome() + " Já foi selecionado!" + "\n");
+                                                vazioFav = false;
+                                            } else {
+                                                u.addFavoritos(filme);
+                                                vazioFav = false;
+                                                System.out.println(filme.getNome() + " adicionado à lista de favoritos com sucesso!"
+                                                        + "\n");
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    if (vazioFav) {
+                                        System.out.println("""
+                                                    Filme inexistente.
+                                                    """);
+                                    }
+                                    break;
+
+                                case 5:
+                                    System.out.println("Filmes favoritos: ");
+                                    u.getFavoritos();
+                                    break;
+
                                 case 0:
                                     menuUsuario = false;
                                     System.out.println("Sentiremos a sua falta. :(");

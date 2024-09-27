@@ -8,6 +8,7 @@ public class Usuario {
     private String localizacao;
     private String bio;
     private ArrayList<Filme> assistidos = new ArrayList<>();
+    private ArrayList<Filme> favoritos = new ArrayList<>();
 
     public Usuario (String email, String username, String senha, int idade, String localizacao, String bio) {
         this.email = email;
@@ -66,8 +67,18 @@ public class Usuario {
         assistidos.add(f);
     }
 
+    public void addFavoritos (Filme f) {
+        favoritos.add(f);
+    }
+
     public void getAssistidos() {
         for (Filme filme : assistidos) {
+            System.out.println(filme);
+        }
+    }
+
+    public void getFavoritos() {
+        for (Filme filme : favoritos) {
             System.out.println(filme);
         }
     }
@@ -75,16 +86,8 @@ public class Usuario {
     public ArrayList<Filme> pegarListaAssistidos () {
         return assistidos;
     }
-}
 
-//        for (Filme f : assistidos) {
-//            if (f != null) {
-//                result = "Filme" + f + ": " + f.getNome() + "\n";
-//                break;
-//            } else {
-//                  System.out.println("Nenhum filme na lista.");
-//            }
-//        }
-//        if (result == null) {
-//            result = "-__-__-__-__-";
-//        }
+    public ArrayList <Filme> pegarListaFavoritos () {
+        return favoritos;
+    }
+}
