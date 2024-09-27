@@ -21,7 +21,7 @@ public class Main {
                         "White Trash Tyler", 18, gravadoras[1]),
                 new Acao(0f, "Matrix", "2 horas e 16 minutos", 0f,
                         "Lana Wachowski e Lilly Wachowski", 16, gravadoras[0]),
-                new Aventura("Vida de skatistas", "Mid 90's", "1 hora e 25 minutos",
+                new Aventura("Vida de skatistas", "Mid 90", "1 hora e 25 minutos",
                         0f, "Jonah Hill", 18, gravadoras[2]),
                 new Comedia(0f, "Lady Bird", "1 hora e 34 minutos",
                         0f, "Greta Gerwig", 16, gravadoras[2]),
@@ -31,8 +31,8 @@ public class Main {
                         0f, "Robert Eggers", 18, gravadoras[1])
         };
 
-        for (Filme filme : filmes) {
-            filme.getGravadora().addFilme(filme);
+        for (Filme f : filmes) {
+            f.getGravadora().addFilme(f);
         }
 
         System.out.println("""
@@ -44,15 +44,21 @@ public class Main {
 
         System.out.println("E-mail: ");
         String email = leitor.nextLine();
+
         System.out.println("Username: ");
-        String username = leitor.nextLine();
+        String user = leitor.nextLine();
+        String username = Utils.capitalize(user);
+
         System.out.println("Senha: ");
         String senha = leitor.nextLine();
+
         System.out.println("Idade: ");
         int idade = leitor.nextInt();
+
         System.out.println("Localização (opicional): ");
         leitor.nextLine();
         String localizacao = leitor.nextLine();
+
         System.out.println("Bio (opicional): ");
         String bio = leitor.nextLine();
 
@@ -73,14 +79,13 @@ public class Main {
                     System.out.println("""
                             --- Login ---
                             
-                            E-mail ou username:
-                            """);
+                            E-mail ou username:""");
                     leitor.nextLine();
                     String emailOuUser = leitor.nextLine();
                     System.out.println("Senha: ");
                     String senhaLogin = leitor.nextLine();
 
-                    if (!emailOuUser.equals(email) && !emailOuUser.equals(username)) {
+                    if (!emailOuUser.equals(email) && !emailOuUser.equals(user)) {
                         System.out.println("""
                                 E-mail ou user não encontrados.
                                 """);
@@ -125,24 +130,38 @@ public class Main {
                                     break;
 
                                 case 2:
-                                    System.out.println("""
-                                            Qual filme você deseja adicionar?:""");
+                                    System.out.println("\n" + "Qual filme você deseja adicionar?:");
 
+                                    leitor.nextLine();
                                     String nomeFilme = leitor.nextLine();
+                                    System.out.println();
+
+                                    boolean vazio = true;
 
                                     for (Filme filme : filmes) {
-                                        if (filme.getNome().equals(nomeFilme)) {
-                                            u.addAssistidos(filme);
-                                            System.out.println(filme.getNome() + " adicionado à lista com sucesso!");
-                                        } else {
-                                            System.out.println("""
-                                                    Filme inexistente.
-                                                    """);
+                                        if (filme.getNome().equals(Utils.capitalize(nomeFilme))) {
+                                            if (u.pegarListaAssistidos().contains(filme)) {
+                                                System.out.println(filme.getNome() + " Já foi selecionado!" + "\n");
+                                                vazio = false;
+                                            } else {
+                                                u.addAssistidos(filme);
+                                                vazio = false;
+                                                System.out.println(filme.getNome() + " adicionado à lista com sucesso!" + "\n");
+                                            }
+                                            break;
                                         }
                                     }
+                                    if (vazio) {
+                                        System.out.println("""
+                                                    Filme inexistente.
+                                                    """);
+                                    }
+                                    break;
 
                                 case 3:
-                                    
+                                    System.out.println("Filmes assistidos: ");
+                                    u.getAssistidos();
+                                    break;
 
                                 case 0:
                                     menuUsuario = false;
@@ -152,6 +171,7 @@ public class Main {
 
                                 default:
                                     System.out.println("Opção inválida!" + "\n");
+                                    break;
                             }
                         }
                     }

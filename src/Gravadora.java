@@ -6,9 +6,14 @@ public class Gravadora {
 
     public Gravadora(String nome) {
         this.nome = nome;
+        this.filmes = new ArrayList<>();
     }
 
     public void addFilme (Filme filme) {
         filmes.add(filme);
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

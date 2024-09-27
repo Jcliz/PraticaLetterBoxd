@@ -7,6 +7,13 @@ public class Comedia extends Filme{
         this.notaHumor = notaHumor;
     }
 
+    @Override
+    public String toString () {
+        return super.toString() + "\n" +
+                "Nota da tensão: " + this.notaHumor + "\n" +
+                "-_-_-_-_-_-_-_-_-_-" + "\n";
+    }
+
     public void setNotaHumor (float notaHumor) {
         this.notaHumor = notaHumor;
     }

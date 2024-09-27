@@ -65,4 +65,26 @@ public class Usuario {
     public void addAssistidos (Filme f) {
         assistidos.add(f);
     }
+
+    public void getAssistidos() {
+        for (Filme filme : assistidos) {
+            System.out.println(filme);
+        }
+    }
+
+    public ArrayList<Filme> pegarListaAssistidos () {
+        return assistidos;
+    }
 }
+
+//        for (Filme f : assistidos) {
+//            if (f != null) {
+//                result = "Filme" + f + ": " + f.getNome() + "\n";
+//                break;
+//            } else {
+//                  System.out.println("Nenhum filme na lista.");
+//            }
+//        }
+//        if (result == null) {
+//            result = "-__-__-__-__-";
+//        }

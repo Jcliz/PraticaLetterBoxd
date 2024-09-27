@@ -7,6 +7,13 @@ public class Terror extends Filme{
         this.notaJumpscares = notaJumpscares;
     }
 
+    @Override
+    public String toString () {
+        return super.toString() + "\n" +
+                "Nota da tensão: " + this.notaJumpscares + "\n" +
+                "-_-_-_-_-_-_-_-_-_-" + "\n";
+    }
+
     public void setNotaJumpscares (float notaJumpscares){
         this.notaJumpscares = notaJumpscares;
     }

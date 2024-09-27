@@ -16,6 +16,18 @@ public class Filme {
         this.classificacao = classificacao;
     }
 
+    @Override
+    public String toString () {
+        return  "-_-_-_-_-_-_-_-_-_-" + "\n" +
+                "Nome: " + this.nome + "\n" +
+                "Duração: " + this.duracao + "\n" +
+                "Nota: " + this.nota + "\n" +
+                "Direção: " + this.direcao + "\n" +
+                "Gravadora: " + this.gravadora.getNome() + "\n" +
+                "Classificação indicativa: " + this.classificacao + "\n" +
+                "-_-_-_-_-_-_-_-_-_-" + "\n";
+    }
+
     public Gravadora getGravadora() {
         return gravadora;
     }

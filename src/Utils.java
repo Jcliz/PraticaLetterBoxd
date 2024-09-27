@@ -105,4 +105,23 @@ public class Utils {
             }
         }
     }
+
+    public static String capitalize(String nome) {
+        if (nome == null || nome.isEmpty()) {
+            return nome;
+        }
+
+        String[] palavras = nome.split(" ");
+        StringBuilder strBuilder = new StringBuilder();
+
+        for (String palavra : palavras) {
+            if (!palavra.isEmpty()) {
+                strBuilder.append(palavra.substring(0, 1).toUpperCase())
+                        .append(palavra.substring(1).toLowerCase());
+            }
+            strBuilder.append(" ");
+        }
+
+        return strBuilder.toString().trim();
+    }
 }

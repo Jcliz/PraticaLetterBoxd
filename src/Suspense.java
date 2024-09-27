@@ -7,6 +7,13 @@ public class Suspense extends Filme{
         this.notaTensao = notaTensao;
     }
 
+    @Override
+    public String toString () {
+        return super.toString() + "\n" +
+                "Nota da tensão: " + this.notaTensao + "\n" +
+                "-_-_-_-_-_-_-_-_-_-" + "\n";
+    }
+
     public void setNotaTensao(float notaTensao){
         this.notaTensao = notaTensao;
     }

@@ -6,4 +6,11 @@ public class Aventura extends Filme{
         super(nome, duracao, nota, direcao, classificacao, gravadora);
         this.tipoAventura = tipoAventura;
     }
+
+    @Override
+    public String toString () {
+        return super.toString() + "\n" +
+                "Nota da tensão: " + this.tipoAventura + "\n" +
+                "-_-_-_-_-_-_-_-_-_-" + "\n";
+    }
 }
