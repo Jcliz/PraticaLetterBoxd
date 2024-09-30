@@ -10,7 +10,7 @@ public class Aventura extends Filme{
     @Override
     public String toString () {
         return super.toString() + "\n" +
-                "Nota da tensão: " + this.tipoAventura + "\n" +
+                "Tipo da aventura: " + this.tipoAventura + "\n" +
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
     }
 }

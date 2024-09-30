@@ -35,4 +35,8 @@ public class Filme {
     public String getNome() {
         return nome;
     }
+
+    public void setNota(float nota) {
+        this.nota = nota;
+    }
 }

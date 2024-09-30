@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utils {
@@ -31,6 +32,7 @@ public class Utils {
 
                 case 2:
                     System.out.println("Novo user:");
+                    leitor.nextLine();
                     String novoUser = leitor.nextLine();
 
                     u.setUser(novoUser);
@@ -124,4 +126,45 @@ public class Utils {
 
         return strBuilder.toString().trim();
     }
+
+    public static String addValoresListas (String nomeFilme, Filme[] filmes, Usuario u, String opcao) {
+        boolean vazio = true;
+
+        for (Filme filme : filmes) {
+            if (filme.getNome().equals(Utils.capitalize(nomeFilme))) {
+                if (opcao.equals("Assistidos")) {
+                    if (u.pegarListaAssistidos().contains(filme)) {
+                        vazio = false;
+                        return "JaSelecionado";
+
+                    } else {
+                        u.addAssistidos(filme);
+                        vazio = false;
+                        return "Adicionado";
+                    }
+                } else if (opcao.equals("Favoritos")){
+                    if (u.pegarListaFavoritos().contains(filme)) {
+                        vazio = false;
+                        return "JaSelecionado";
+
+                    } else {
+                        u.addFavoritos(filme);
+                        vazio = false;
+                        return "Adicionado";
+                    }
+                }
+            }
+        }
+        if (vazio) {
+            System.out.println("""
+                                 Filme inexistente.
+                                 """);
+        }
+        return "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
+    }
+
+    public static void avaliacaoToString () {
+
+    }
+
 }

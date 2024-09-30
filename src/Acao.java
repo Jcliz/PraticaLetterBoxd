@@ -10,11 +10,7 @@ public class Acao extends Filme{
     @Override
     public String toString () {
         return super.toString() + "\n" +
-                "Nota da tensão: " + this.notaEfeitos + "\n" +
+                "Nota dos efeitos especiais: " + this.notaEfeitos + "\n" +
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
-    }
-
-    public void setNotaEfeitos (float notaEfeitos){
-        this.notaEfeitos = notaEfeitos;
     }
 }

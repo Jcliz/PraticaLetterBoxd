@@ -10,7 +10,7 @@ public class Romance extends Filme{
     @Override
     public String toString () {
         return super.toString() + "\n" +
-                "Nota da tensão: " + this.tipoRomance + "\n" +
+                "Tipo do romance: " + this.tipoRomance + "\n" +
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
     }
 }

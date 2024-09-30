@@ -10,11 +10,7 @@ public class Comedia extends Filme{
     @Override
     public String toString () {
         return super.toString() + "\n" +
-                "Nota da tensão: " + this.notaHumor + "\n" +
+                "Nota do humor: " + this.notaHumor + "\n" +
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
-    }
-
-    public void setNotaHumor (float notaHumor) {
-        this.notaHumor = notaHumor;
     }
 }

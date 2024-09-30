@@ -14,20 +14,20 @@ public class Main {
 
         //CRIAÇÃO DOS FILMES
         Filme[] filmes = new Filme[] {
-                new Suspense(0f, "Joker", "2 horas e 2 minutos", 0f,
+                new Suspense(8.5f, "Joker", "2 horas e 2 minutos", 0f,
                         "Todd Phillips", 18, gravadoras[0]),
                 new Documentario("Documentário sobre o rapper Travis Scott",
                         "Look Mom I Can Fly", "1 hora e 24 minutos", 0f,
                         "White Trash Tyler", 18, gravadoras[1]),
-                new Acao(0f, "Matrix", "2 horas e 16 minutos", 0f,
+                new Acao(9f, "Matrix", "2 horas e 16 minutos", 0f,
                         "Lana Wachowski e Lilly Wachowski", 16, gravadoras[0]),
                 new Aventura("Vida de skatistas", "Mid 90", "1 hora e 25 minutos",
                         0f, "Jonah Hill", 18, gravadoras[2]),
-                new Comedia(0f, "Lady Bird", "1 hora e 34 minutos",
+                new Comedia(6.3f, "Lady Bird", "1 hora e 34 minutos",
                         0f, "Greta Gerwig", 16, gravadoras[2]),
                 new Romance("Amor entre diferentes classes", "Diário de Uma Paixão",
                         "2 horas e 3 minutos", 0f, "Nick Cassavetes", 16, gravadoras[0]),
-                new Terror(0f, "A bruxa", "1 hora e 40 minutos",
+                new Terror(4.7f, "A bruxa", "1 hora e 40 minutos",
                         0f, "Robert Eggers", 18, gravadoras[1])
         };
 
@@ -130,32 +130,21 @@ public class Main {
                                     break;
 
                                 case 2:
-                                    System.out.println("\n" + "Qual filme você deseja adicionar?:");
+                                    System.out.println("""
+                                            ===---=== Adicionar um filme à lista de assistidos ===---===
+                                            Indique o filme:""");
 
                                     leitor.nextLine();
-                                    String nomeFilme = leitor.nextLine();
+                                    String nomeFilme = Utils.capitalize(leitor.nextLine());
+                                    String assistido = Utils.addValoresListas(nomeFilme, filmes, u, "Assistidos");
                                     System.out.println();
 
-                                    boolean vazio = true;
-
-                                    for (Filme filme : filmes) {
-                                        if (filme.getNome().equals(Utils.capitalize(nomeFilme))) {
-                                            if (u.pegarListaAssistidos().contains(filme)) {
-                                                System.out.println(filme.getNome() + " Já foi selecionado!" + "\n");
-                                                vazio = false;
-                                            } else {
-                                                u.addAssistidos(filme);
-                                                vazio = false;
-                                                System.out.println(filme.getNome() + " adicionado à lista com sucesso!" + "\n");
-                                            }
-                                            break;
-                                        }
+                                    if (assistido.equals("JaSelecionado")) {
+                                        System.out.println(nomeFilme + " Já foi selecionado!" + "\n");
+                                    } else if (assistido.equals("Adicionado")){
+                                        System.out.println(nomeFilme + " adicionado à lista de assistidos com sucesso!" + "\n");
                                     }
-                                    if (vazio) {
-                                        System.out.println("""
-                                                    Filme inexistente.
-                                                    """);
-                                    }
+                                    System.out.println("===---===---===---===---===---===---===" + "\n");
                                     break;
 
                                 case 3:
@@ -164,39 +153,68 @@ public class Main {
                                     break;
 
                                 case 4:
-                                    System.out.println("\n" + "Qual filme você deseja adicionar na lista de favoritos?:");
+                                    System.out.println("""
+                                            ===---===---=== Favoritar um filme ===---===--===
+                                            Indique o filme:""");
 
                                     leitor.nextLine();
-                                    String nomeFilmeFav = leitor.nextLine();
+                                    String nomeFilmeFav = Utils.capitalize(leitor.nextLine());
+                                    String fav = Utils.addValoresListas(nomeFilmeFav, filmes, u, "Favoritos");
                                     System.out.println();
 
-                                    boolean vazioFav = true;
-
-                                    for (Filme filme : filmes) {
-                                        if (filme.getNome().equals(Utils.capitalize(nomeFilmeFav))) {
-                                            if (u.pegarListaFavoritos().contains(filme)) {
-                                                System.out.println(filme.getNome() + " Já foi selecionado!" + "\n");
-                                                vazioFav = false;
-                                            } else {
-                                                u.addFavoritos(filme);
-                                                vazioFav = false;
-                                                System.out.println(filme.getNome() + " adicionado à lista de favoritos com sucesso!"
-                                                        + "\n");
-                                            }
-                                            break;
-                                        }
+                                    if (fav.equals("JaSelecionado")) {
+                                        System.out.println(nomeFilmeFav + " Já foi favoritado!" + "\n");
+                                    } else if (fav.equals("Adicionado")){
+                                        System.out.println(nomeFilmeFav + " Filme favoritado com sucesso!" + "\n");
                                     }
-                                    if (vazioFav) {
-                                        System.out.println("""
-                                                    Filme inexistente.
-                                                    """);
-                                    }
+                                    System.out.println("===---===---===---===---===---===---===" + "\n");
                                     break;
 
                                 case 5:
                                     System.out.println("Filmes favoritos: ");
                                     u.getFavoritos();
                                     break;
+
+                                case 6:
+                                    System.out.println("""
+                                            --__--__--__-- Avaliações --__--__--__--
+                                            Qual filme você deseja avaliar?:""");
+
+                                    leitor.nextLine();
+                                    String filmeAva = Utils.capitalize(leitor.nextLine());
+
+                                    boolean inex = true;
+                                    for (Filme filme : filmes) {
+                                        if (filme.getNome().equals(filmeAva)) {
+                                            System.out.println("-_-_- Avaliar " + filme.getNome() + " -_-_-");
+
+                                            System.out.println("Nota (0 a 10):");
+                                            float notaAva = leitor.nextFloat();
+                                            filme.setNota(notaAva);
+
+                                            System.out.println("Descrição (opcional):");
+                                            leitor.nextLine();
+                                            String descricao = leitor.nextLine();
+
+                                            u.addAvaliacoes(descricao, filme.getNome(), notaAva);
+                                            inex = false;
+                                        }
+                                        break;
+                                    }
+
+                                    if (inex) {
+                                        System.out.println("Filme inexistente!" + "\n");
+                                    }
+
+                                    break;
+
+                                case 7:
+                                    System.out.println("Avaliações:");
+                                    System.out.println(u.getAvaliados());
+                                    break;
+
+                                case 8:
+
 
                                 case 0:
                                     menuUsuario = false;

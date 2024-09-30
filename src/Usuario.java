@@ -9,6 +9,7 @@ public class Usuario {
     private String bio;
     private ArrayList<Filme> assistidos = new ArrayList<>();
     private ArrayList<Filme> favoritos = new ArrayList<>();
+    private ArrayList<ArrayList> avaliados = new ArrayList<>();
 
     public Usuario (String email, String username, String senha, int idade, String localizacao, String bio) {
         this.email = email;
@@ -71,6 +72,14 @@ public class Usuario {
         favoritos.add(f);
     }
 
+    public void addAvaliacoes (String desc, String nomeFilme, float nota) {
+        ArrayList<Object> filmeAvaliado = new ArrayList<>();
+        filmeAvaliado.add(nomeFilme);
+        filmeAvaliado.add(nota);
+        filmeAvaliado.add(desc);
+        this.avaliados.add(filmeAvaliado);
+    }
+
     public void getAssistidos() {
         for (Filme filme : assistidos) {
             System.out.println(filme);
@@ -89,5 +98,9 @@ public class Usuario {
 
     public ArrayList <Filme> pegarListaFavoritos () {
         return favoritos;
+    }
+
+    public ArrayList <ArrayList> getAvaliados () {
+        return avaliados;
     }
 }

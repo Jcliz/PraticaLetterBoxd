@@ -10,7 +10,7 @@ public class Documentario extends Filme {
     @Override
     public String toString () {
         return super.toString() + "\n" +
-                "Nota da tensão: " + this.conteudo + "\n" +
+                "Conteúdo: " + this.conteudo + "\n" +
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
     }
 }
