@@ -214,7 +214,40 @@ public class Main {
                                     break;
 
                                 case 8:
+                                    System.out.println("Filme para detalhar: ");
+                                    leitor.nextLine();
+                                    String nome = Utils.capitalize(leitor.nextLine());
 
+                                    boolean existe = false;
+                                    for (Filme filme : filmes) {
+                                        if (filme.getNome().equals(nome)) {
+                                            System.out.println(filme);
+                                            existe = true;
+                                        }
+                                        break;
+                                    }
+                                    if (!existe) {
+                                        System.out.println("Filme inexistente!" + "\n");
+                                    }
+                                    break;
+
+                                case 9:
+                                    leitor.nextLine();
+                                    System.out.println("Indique a gravadora: ");
+                                    String nomeGravadora = Utils.capitalize(leitor.nextLine());
+
+                                    boolean exis = false;
+                                    for (Gravadora gravadora : gravadoras) {
+                                        if (gravadora.getNome().equals(nomeGravadora)) {
+                                            System.out.println(gravadora);
+                                            exis = true;
+                                        }
+                                        break;
+                                    }
+                                    if (!exis) {
+                                        System.out.println("Gravadora inexistente!" + "\n");
+                                    }
+                                    break;
 
                                 case 0:
                                     menuUsuario = false;
