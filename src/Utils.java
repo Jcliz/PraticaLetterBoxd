@@ -47,7 +47,7 @@ public class Utils {
                     String novaSenha = leitor.nextLine();
 
                     if (novaSenha.equals(u.getSenha())) {
-                        System.out.println("Senha idêntica à anterior cadastrada!");
+                        System.out.println("Senha idêntica à anterior cadastrada!" + "\n");
                         break;
                     }
 
@@ -55,10 +55,11 @@ public class Utils {
                     String confirmSenha = leitor.nextLine();
 
                     if (!confirmSenha.equals(novaSenha)) {
-                        System.out.println("Senha não é igual!");
+                        System.out.println("Senha não é igual!" + "\n");
                         break;
                     }
 
+                    System.out.println("Nova senha cadastrada com sucesso!" + "\n");
                     u.setSenha(confirmSenha);
                     break;
 
@@ -162,9 +163,4 @@ public class Utils {
         }
         return "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-";
     }
-
-    public static void avaliacaoToString () {
-
-    }
-
 }

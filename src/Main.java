@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +13,8 @@ public class Main {
                 new Gravadora("Netflix"),
                 new Gravadora("A24")
         };
+
+        ArrayList<Gravadora> listaGravadoras = new ArrayList<>(Arrays.asList(gravadoras));
 
         //CRIAÇÃO DOS FILMES
         Filme[] filmes = new Filme[] {
@@ -30,6 +34,8 @@ public class Main {
                 new Terror(4.7f, "A bruxa", "1 hora e 40 minutos",
                         0f, "Robert Eggers", 18, gravadoras[1])
         };
+
+        ArrayList<Filme> listaFilmes = new ArrayList<>(Arrays.asList(filmes));
 
         for (Filme f : filmes) {
             f.getGravadora().addFilme(f);
@@ -111,7 +117,7 @@ public class Main {
                                                 [8] - Detalhar um filme
                                                 [9] - Listar gravadoras
                                                 
-                                                [0] - Sair
+                                                [0] - Voltar
                                                 """);
 
                             switch (leitor.nextInt()) {
@@ -144,7 +150,7 @@ public class Main {
                                     } else if (assistido.equals("Adicionado")){
                                         System.out.println(nomeFilme + " adicionado à lista de assistidos com sucesso!" + "\n");
                                     }
-                                    System.out.println("===---===---===---===---===---===---===" + "\n");
+                                    System.out.println("===---===---===---===---===---===---===---===---===---===---===" + "\n");
                                     break;
 
                                 case 3:
@@ -167,7 +173,7 @@ public class Main {
                                     } else if (fav.equals("Adicionado")){
                                         System.out.println(nomeFilmeFav + " Filme favoritado com sucesso!" + "\n");
                                     }
-                                    System.out.println("===---===---===---===---===---===---===" + "\n");
+                                    System.out.println("===---===---===---===---===---===---===---===---===" + "\n");
                                     break;
 
                                 case 5:
@@ -184,6 +190,7 @@ public class Main {
                                     String filmeAva = Utils.capitalize(leitor.nextLine());
 
                                     boolean inex = true;
+
                                     for (Filme filme : filmes) {
                                         if (filme.getNome().equals(filmeAva)) {
                                             System.out.println("-_-_- Avaliar " + filme.getNome() + " -_-_-");
@@ -192,14 +199,14 @@ public class Main {
                                             float notaAva = leitor.nextFloat();
                                             filme.setNota(notaAva);
 
-                                            System.out.println("Descrição (opcional):");
+                                            System.out.println("Descrição (opcional):" + "\n");
                                             leitor.nextLine();
                                             String descricao = leitor.nextLine();
 
+                                            System.out.println("Avaliação cadastrada com sucesso!" + "\n");
                                             u.addAvaliacoes(descricao, filme.getNome(), notaAva);
                                             inex = false;
                                         }
-                                        break;
                                     }
 
                                     if (inex) {
@@ -211,6 +218,7 @@ public class Main {
                                 case 7:
                                     System.out.println("Avaliações:");
                                     System.out.println(u.getAvaliados());
+                                    System.out.println();
                                     break;
 
                                 case 8:
@@ -242,7 +250,6 @@ public class Main {
                                             System.out.println(gravadora);
                                             exis = true;
                                         }
-                                        break;
                                     }
                                     if (!exis) {
                                         System.out.println("Gravadora inexistente!" + "\n");
@@ -251,8 +258,8 @@ public class Main {
 
                                 case 0:
                                     menuUsuario = false;
-                                    System.out.println("Sentiremos a sua falta. :(");
-                                    System.exit(0);
+                                    System.out.println("Voltando para o login!" + "\n");
+                                    acessoLogin = true;
                                     break;
 
                                 default:
@@ -280,7 +287,38 @@ public class Main {
 
                         boolean acessoColab = true;
                         while (acessoColab) {
+                            System.out.println("""
+                                    ---___---___---___--- OPÇÕES DE COLABORADOR ---___---___---___---
+                                    """);
+                            System.out.println("""
+                                    Selecione uma opção:
+                                    [1] - Adicionar um filme
+                                    [2] - Remover um filme
+                                    [3] - Adicionar uma gravadora
+                                    [4] - Remover uma gravadora
+                                    
+                                    [0] - Voltar""");
 
+                            switch (leitor.nextInt()) {
+                                case 1:
+                                    System.out.println("""
+                                            -_-_-_-_-_- Adicionar um filme -_-_-_-_-_-
+                                            Nome:""");
+                                    leitor.nextLine();
+                                    String nome = leitor.nextLine();
+
+                                    System.out.println("Duração:");
+                                    String duracao = leitor.nextLine();
+
+                                    System.out.println("Direção:");
+                                    String direcao = leitor.nextLine();
+
+                                    System.out.println("Gravadora:");
+                                    leitor.nextLine();
+                                    String gravadora = leitor.nextLine();
+
+                                    System.out.println("Classificação Indicativa");
+                            }
                         }
 
                     }

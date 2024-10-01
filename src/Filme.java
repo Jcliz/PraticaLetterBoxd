@@ -21,7 +21,7 @@ public class Filme {
         return  "-_-_-_-_-_-_-_-_-_-" + "\n" +
                 "Nome: " + this.nome + "\n" +
                 "Duração: " + this.duracao + "\n" +
-                "Nota: " + this.nota + "\n" +
+                "Nota dos usuários: " + this.nota + "\n" +
                 "Direção: " + this.direcao + "\n" +
                 "Gravadora: " + this.gravadora.getNome() + "\n" +
                 "Classificação indicativa: " + this.classificacao + "\n" +
