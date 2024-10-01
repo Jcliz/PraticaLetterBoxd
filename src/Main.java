@@ -313,11 +313,55 @@ public class Main {
                                     System.out.println("Direção:");
                                     String direcao = leitor.nextLine();
 
-                                    System.out.println("Gravadora:");
-                                    leitor.nextLine();
-                                    String gravadora = leitor.nextLine();
-
                                     System.out.println("Classificação Indicativa");
+                                    leitor.nextLine();
+                                    int classificacao = leitor.nextInt();
+
+                                    System.out.println("""
+                                                       Selecione o gênero do filme:
+                                                       [1] - Ação
+                                                       [2] - Aventura
+                                                       [3] - Comédia
+                                                       [4] - Documentário
+                                                       [5] - Romance
+                                                       [6] - Suspense
+                                                       [7] - Terror
+                                                       """);
+                                    Filme novoFilme;
+
+                                    switch (leitor.nextInt()) {
+                                        case 1:
+                                            System.out.println("Nota da mídia para os efeitos especiais:");
+                                            float notaEfeitos = leitor.nextFloat();
+
+                                            novoFilme = new Acao(notaEfeitos, nome, duracao,
+                                                    0f, direcao, classificacao, null);
+                                            listaFilmes.add(novoFilme);
+
+                                            System.out.println("Novo filme de ação criado!" + "\n");
+
+                                        case 2:
+                                            System.out.println("Tipo de aventura:");
+                                            String tipoAventura = leitor.nextLine();
+
+                                            novoFilme = new Aventura(tipoAventura, nome, duracao,
+                                                    0f, direcao, classificacao, null);
+                                            listaFilmes.add(novoFilme);
+
+                                            System.out.println("Novo filme de aventura criado!" + "\n");
+
+                                        case 3:
+                                            System.out.println("Nota da mídia para o humor presente no filme:");
+                                            float notaHumor = leitor.nextFloat();
+
+                                            novoFilme = new Comedia(notaHumor, nome, duracao,
+                                                    0f, direcao, classificacao, null);
+                                            listaFilmes.add(novoFilme);
+
+                                            System.out.println("Novo filme de comédia criado!" + "\n");
+
+                                        case 4:
+                                    }
                             }
                         }
 
