@@ -128,7 +128,7 @@ public class Utils {
         return strBuilder.toString().trim();
     }
 
-    public static String addValoresListas (String nomeFilme, Filme[] filmes, Usuario u, String opcao) {
+    public static String addValoresListas (String nomeFilme, ArrayList<Filme> filmes, Usuario u, String opcao) {
         boolean vazio = true;
 
         for (Filme filme : filmes) {

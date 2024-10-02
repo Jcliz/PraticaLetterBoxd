@@ -16,6 +16,10 @@ public class Filme {
         this.classificacao = classificacao;
     }
 
+    public Filme () {
+
+    }
+
     @Override
     public String toString () {
         return  "-_-_-_-_-_-_-_-_-_-" + "\n" +
@@ -38,5 +42,10 @@ public class Filme {
 
     public void setNota(float nota) {
         this.nota = nota;
+    }
+
+    public Filme instanciarFilme(String nome, String duracao, float nota, String direcao,
+                                 int classificacao, Gravadora gravadora) {
+        return new Filme(nome, duracao, nota, direcao, classificacao, gravadora);
     }
 }

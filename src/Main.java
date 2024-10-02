@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -37,7 +38,7 @@ public class Main {
 
         ArrayList<Filme> listaFilmes = new ArrayList<>(Arrays.asList(filmes));
 
-        for (Filme f : filmes) {
+        for (Filme f : listaFilmes) {
             f.getGravadora().addFilme(f);
         }
 
@@ -142,7 +143,7 @@ public class Main {
 
                                     leitor.nextLine();
                                     String nomeFilme = Utils.capitalize(leitor.nextLine());
-                                    String assistido = Utils.addValoresListas(nomeFilme, filmes, u, "Assistidos");
+                                    String assistido = Utils.addValoresListas(nomeFilme, listaFilmes, u, "Assistidos");
                                     System.out.println();
 
                                     if (assistido.equals("JaSelecionado")) {
@@ -165,7 +166,7 @@ public class Main {
 
                                     leitor.nextLine();
                                     String nomeFilmeFav = Utils.capitalize(leitor.nextLine());
-                                    String fav = Utils.addValoresListas(nomeFilmeFav, filmes, u, "Favoritos");
+                                    String fav = Utils.addValoresListas(nomeFilmeFav, listaFilmes, u, "Favoritos");
                                     System.out.println();
 
                                     if (fav.equals("JaSelecionado")) {
@@ -191,7 +192,7 @@ public class Main {
 
                                     boolean inex = true;
 
-                                    for (Filme filme : filmes) {
+                                    for (Filme filme : listaFilmes) {
                                         if (filme.getNome().equals(filmeAva)) {
                                             System.out.println("-_-_- Avaliar " + filme.getNome() + " -_-_-");
 
@@ -222,17 +223,18 @@ public class Main {
                                     break;
 
                                 case 8:
+                                    System.out.println(listaFilmes);
                                     System.out.println("Filme para detalhar: ");
                                     leitor.nextLine();
                                     String nome = Utils.capitalize(leitor.nextLine());
 
                                     boolean existe = false;
-                                    for (Filme filme : filmes) {
+                                    for (Filme filme : listaFilmes) {
                                         if (filme.getNome().equals(nome)) {
                                             System.out.println(filme);
                                             existe = true;
+                                            break;
                                         }
-                                        break;
                                     }
                                     if (!existe) {
                                         System.out.println("Filme inexistente!" + "\n");
@@ -283,7 +285,8 @@ public class Main {
 
                     } else {
                         acessoLogin = false;
-                        System.out.println("Seja bem-vindo(a)!");
+                        System.out.println("Seja bem-vindo(a)!" + "\n");
+                        Colaborador colab = new Colaborador();
 
                         boolean acessoColab = true;
                         while (acessoColab) {
@@ -305,7 +308,7 @@ public class Main {
                                             -_-_-_-_-_- Adicionar um filme -_-_-_-_-_-
                                             Nome:""");
                                     leitor.nextLine();
-                                    String nome = leitor.nextLine();
+                                    String nome = Utils.capitalize(leitor.nextLine());
 
                                     System.out.println("Duração:");
                                     String duracao = leitor.nextLine();
@@ -313,11 +316,11 @@ public class Main {
                                     System.out.println("Direção:");
                                     String direcao = leitor.nextLine();
 
-                                    System.out.println("Classificação Indicativa");
-                                    leitor.nextLine();
+                                    System.out.println("Classificação Indicativa:");
                                     int classificacao = leitor.nextInt();
 
                                     System.out.println("""
+                                                       
                                                        Selecione o gênero do filme:
                                                        [1] - Ação
                                                        [2] - Aventura
@@ -333,35 +336,129 @@ public class Main {
                                         case 1:
                                             System.out.println("Nota da mídia para os efeitos especiais:");
                                             float notaEfeitos = leitor.nextFloat();
+                                            novoFilme = new Acao();
 
-                                            novoFilme = new Acao(notaEfeitos, nome, duracao,
-                                                    0f, direcao, classificacao, null);
-                                            listaFilmes.add(novoFilme);
+                                            Filme resultAcao = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
+                                            ((Acao) resultAcao).setNotaEfeitos(notaEfeitos);
+                                            listaFilmes.add(resultAcao);
 
                                             System.out.println("Novo filme de ação criado!" + "\n");
+                                            break;
 
                                         case 2:
                                             System.out.println("Tipo de aventura:");
                                             String tipoAventura = leitor.nextLine();
+                                            novoFilme = new Aventura();
 
-                                            novoFilme = new Aventura(tipoAventura, nome, duracao,
-                                                    0f, direcao, classificacao, null);
-                                            listaFilmes.add(novoFilme);
+                                            Filme resultAventura = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
+                                            ((Aventura) resultAventura).setTipoAventura(tipoAventura);
+                                            listaFilmes.add(resultAventura);
+
+                                            listaFilmes.add(resultAventura);
 
                                             System.out.println("Novo filme de aventura criado!" + "\n");
+                                            break;
 
                                         case 3:
                                             System.out.println("Nota da mídia para o humor presente no filme:");
                                             float notaHumor = leitor.nextFloat();
+                                            novoFilme = new Comedia();
 
-                                            novoFilme = new Comedia(notaHumor, nome, duracao,
-                                                    0f, direcao, classificacao, null);
-                                            listaFilmes.add(novoFilme);
+                                            Filme resultComedia = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
+                                            ((Comedia) resultComedia).setNotaHumor(notaHumor);
+                                            listaFilmes.add(resultComedia);
 
                                             System.out.println("Novo filme de comédia criado!" + "\n");
+                                            break;
 
                                         case 4:
+                                            System.out.println("Tipo do documentário:");
+                                            leitor.nextLine();
+                                            String tipoDoc = leitor.nextLine();
+                                            novoFilme = new Documentario();
+
+                                            Filme resultDoc = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
+                                            ((Documentario) resultDoc).setConteudo(tipoDoc);
+                                            listaFilmes.add(resultDoc);
+
+                                            System.out.println("Novo documentário criado!" + "\n");
+                                            break;
+
+                                        case 5:
+                                            System.out.println("Tipo do romance:");
+                                            String tipoRom = leitor.nextLine();
+                                            novoFilme = new Romance();
+
+                                            Filme resultRomance = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
+                                            ((Romance) resultRomance).setTipoRomance(tipoRom);
+                                            listaFilmes.add(resultRomance);
+
+                                            System.out.println("Novo filme de romance criado!" + "\n");
+                                            break;
+
+                                        case 6:
+                                            System.out.println("Nota da mídia para a tensão no filme:");
+                                            leitor.nextLine();
+                                            float notaSusp = leitor.nextFloat();
+                                            novoFilme = new Suspense();
+
+                                            Filme resultSus = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
+                                            ((Suspense) resultSus).setNotaTensao(notaSusp);
+                                            listaFilmes.add(resultSus);
+
+                                            System.out.println("Novo filme de suspense criado!" + "\n");
+                                            break;
+
+                                        case 7:
+                                            System.out.println("Nota da mídia para os jumpscares presentes no filme:");
+                                            float notaJump = leitor.nextFloat();
+                                            novoFilme = new Terror();
+
+                                            Filme resultTerror = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
+                                            ((Terror) resultTerror).setNotaJumpscares(notaJump);
+                                            listaFilmes.add(resultTerror);
+
+                                            System.out.println("Novo filme de terror criado!" + "\n");
+                                            break;
+
+                                        default:
+                                            System.out.println("Opção inválida!");
+                                            break;
                                     }
+                                    break;
+
+                                case 2:
+                                    System.out.println("""
+                                            -__--__-__--__- Remover um filme -__--__-__--__-
+                                            Indique o filme:
+                                            """);
+                                    leitor.nextLine();
+                                    String nomeRemov = leitor.nextLine();
+                                    boolean exis = false;
+
+                                    for (Filme filme : listaFilmes) {
+                                        if (filme.getNome().equals(nomeRemov)) {
+                                            listaFilmes.remove(filme);
+                                            exis = true;
+                                        }
+                                    }
+                                    if (!exis) {
+                                        System.out.println("Filme não existe!" + "\n");
+                                    }
+                                    break;
+
+                                case 3:
+
+                                case 4:
+
+                                case 0:
+                                    acessoColab = false;
+                                    System.out.println("Voltando para o login!");
+                                    acessoLogin = true;
+                                    break;
+
+
+                                default:
                             }
                         }
 
