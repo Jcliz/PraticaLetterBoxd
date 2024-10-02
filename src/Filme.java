@@ -48,4 +48,8 @@ public class Filme {
                                  int classificacao, Gravadora gravadora) {
         return new Filme(nome, duracao, nota, direcao, classificacao, gravadora);
     }
+
+    public void setGravadora (Gravadora gravadora) {
+        this.gravadora = gravadora;
+    }
 }
