@@ -49,6 +49,10 @@ public class Filme {
         return new Filme(nome, duracao, nota, direcao, classificacao, gravadora);
     }
 
+    public Filme setDiferencas (float notaEfeitos, ) {
+
+    }
+
     public void setGravadora (Gravadora gravadora) {
         this.gravadora = gravadora;
     }

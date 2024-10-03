@@ -13,7 +13,8 @@ public class Gravadora {
     public String toString() {
         return "--__--__--__--__--__--__--__--" + "\n" +
                 "Nome: " + this.nome + "\n" +
-                "Filmes: " + this.filmes + "\n" +
+                "Filmes: " + "\n" +
+                this.filmes.toString() + "\n" +
                 "--__--__--__--__--__--__--__--" + "\n";
     }
 

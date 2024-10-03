@@ -48,27 +48,7 @@ public class Main {
                             """);
         System.out.println("Agora, vamos fazer o seu cadastro." + "\n");
 
-        System.out.println("E-mail: ");
-        String email = leitor.nextLine();
-
-        System.out.println("Username: ");
-        String user = leitor.nextLine();
-        String username = Utils.capitalize(user);
-
-        System.out.println("Senha: ");
-        String senha = leitor.nextLine();
-
-        System.out.println("Idade: ");
-        int idade = leitor.nextInt();
-
-        System.out.println("Localização (opicional): ");
-        leitor.nextLine();
-        String localizacao = leitor.nextLine();
-
-        System.out.println("Bio (opicional): ");
-        String bio = leitor.nextLine();
-
-        Usuario u = new Usuario(email, username, senha, idade, localizacao, bio);
+        Usuario u = Utils.cadastrarUsuario(leitor);
 
         boolean acessoLogin = true;
 
@@ -91,16 +71,17 @@ public class Main {
                     System.out.println("Senha: ");
                     String senhaLogin = leitor.nextLine();
 
-                    if (!emailOuUser.equals(email) && !emailOuUser.equals(user)) {
+                    if (!emailOuUser.equals(u.getEmail()) && !emailOuUser.equals(u.getUser())) {
                         System.out.println("""
                                 E-mail ou user não encontrados.
                                 """);
-                    } else if (!senhaLogin.equals(senha)) {
+                    } else if (!senhaLogin.equals(u.getSenha())) {
                         System.out.println("""
                                 Senha incorreta.
                                 """);
                         break;
                     } else {
+                        u.setUser(Utils.capitalize(u.getUser()));
                         System.out.println("\n" + "Seja bem-vindo(a), " + u.getUser() + "!" + "\n");
                         acessoLogin = false;
 
@@ -142,14 +123,8 @@ public class Main {
 
                                     leitor.nextLine();
                                     String nomeFilme = Utils.capitalize(leitor.nextLine());
-                                    String assistido = Utils.addValoresListas(nomeFilme, listaFilmes, u, "Assistidos");
                                     System.out.println();
-
-                                    if (assistido.equals("JaSelecionado")) {
-                                        System.out.println(nomeFilme + " Já foi selecionado!" + "\n");
-                                    } else if (assistido.equals("Adicionado")){
-                                        System.out.println(nomeFilme + " adicionado à lista de assistidos com sucesso!" + "\n");
-                                    }
+                                    Utils.addValoresListas(nomeFilme, listaFilmes, u, "Assistidos");
                                     System.out.println("===---===---===---===---===---===---===---===---===---===---===" + "\n");
                                     break;
 
@@ -165,14 +140,8 @@ public class Main {
 
                                     leitor.nextLine();
                                     String nomeFilmeFav = Utils.capitalize(leitor.nextLine());
-                                    String fav = Utils.addValoresListas(nomeFilmeFav, listaFilmes, u, "Favoritos");
                                     System.out.println();
-
-                                    if (fav.equals("JaSelecionado")) {
-                                        System.out.println(nomeFilmeFav + " Já foi favoritado!" + "\n");
-                                    } else if (fav.equals("Adicionado")){
-                                        System.out.println(nomeFilmeFav + " Filme favoritado com sucesso!" + "\n");
-                                    }
+                                    Utils.addValoresListas(nomeFilmeFav, listaFilmes, u, "Favoritos");
                                     System.out.println("===---===---===---===---===---===---===---===---===" + "\n");
                                     break;
 
@@ -189,30 +158,7 @@ public class Main {
                                     leitor.nextLine();
                                     String filmeAva = Utils.capitalize(leitor.nextLine());
 
-                                    boolean inex = true;
-
-                                    for (Filme filme : listaFilmes) {
-                                        if (filme.getNome().equals(filmeAva)) {
-                                            System.out.println("-_-_- Avaliar " + filme.getNome() + " -_-_-");
-
-                                            System.out.println("Nota (0 a 10):");
-                                            float notaAva = leitor.nextFloat();
-                                            filme.setNota(notaAva);
-
-                                            System.out.println("Descrição (opcional):" + "\n");
-                                            leitor.nextLine();
-                                            String descricao = leitor.nextLine();
-
-                                            System.out.println("Avaliação cadastrada com sucesso!" + "\n");
-                                            u.addAvaliacoes(descricao, filme.getNome(), notaAva);
-                                            inex = false;
-                                        }
-                                    }
-
-                                    if (inex) {
-                                        System.out.println("Filme inexistente!" + "\n");
-                                    }
-
+                                    Utils.avaliarFilmes(filmeAva, listaFilmes, leitor, u);
                                     break;
 
                                 case 7:
@@ -224,18 +170,14 @@ public class Main {
                                 case 8:
                                     System.out.println("Filme para detalhar: ");
                                     leitor.nextLine();
-                                    String nome = Utils.capitalize(leitor.nextLine());
+                                    String nome = leitor.nextLine();
 
-                                    boolean existe = false;
-                                    for (Filme filme : listaFilmes) {
-                                        if (filme.getNome().equals(nome)) {
-                                            System.out.println(filme);
-                                            existe = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!existe) {
-                                        System.out.println("Filme inexistente!" + "\n");
+                                    Filme f = Utils.buscarFilme(nome, listaFilmes);
+                                    if (f == null) {
+                                        System.out.println("Filme inexistente!");
+                                        break;
+                                    } else {
+                                        System.out.println(f);
                                     }
                                     break;
 
@@ -244,16 +186,12 @@ public class Main {
                                     System.out.println("Indique a gravadora: ");
                                     String nomeGravadora = Utils.capitalize(leitor.nextLine());
 
-                                    boolean exis = false;
-                                    for (Gravadora gravadora : listaGravadoras) {
-                                        if (gravadora.getNome().equals(nomeGravadora)) {
-                                            System.out.println(gravadora);
-                                            exis = true;
-                                            break;
-                                        }
-                                    }
-                                    if (!exis) {
-                                        System.out.println("Gravadora inexistente!" + "\n");
+                                    Gravadora g = Utils.buscarGravadora(nomeGravadora, listaGravadoras);
+                                    if (g == null) {
+                                        System.out.println("Gravadora inexistente!");
+                                        break;
+                                    } else {
+                                        System.out.println(g);
                                     }
                                     break;
 
@@ -291,15 +229,15 @@ public class Main {
                         while (acessoColab) {
                             System.out.println("""
                                     ---___---___---___--- OPÇÕES DE COLABORADOR ---___---___---___---
-                                    """);
-                            System.out.println("""
+                                    
                                     Selecione uma opção:
                                     [1] - Adicionar um filme
                                     [2] - Remover um filme
                                     [3] - Adicionar uma gravadora
                                     [4] - Remover uma gravadora
                                     
-                                    [0] - Voltar""");
+                                    [0] - Voltar
+                                    """);
 
                             switch (leitor.nextInt()) {
                                 case 1:
@@ -433,19 +371,7 @@ public class Main {
                                             """);
                                     leitor.nextLine();
                                     String nomeRemov = Utils.capitalize(leitor.nextLine());
-                                    boolean exis = false;
-
-                                    for (Filme filme : listaFilmes) {
-                                        if (filme.getNome().equals(nomeRemov)) {
-                                            listaFilmes.remove(filme);
-                                            exis = true;
-                                            System.out.println(filme.getNome() + " foi removido dos filmes!" + "\n");
-                                            break;
-                                        }
-                                    }
-                                    if (!exis) {
-                                        System.out.println("Filme não existe!" + "\n");
-                                    }
+                                    Utils.removerFilmes(listaFilmes, nomeRemov);
                                     break;
 
                                 case 3:
@@ -456,43 +382,9 @@ public class Main {
                                     leitor.nextLine();
                                     String nomeGrav = Utils.capitalize(leitor.nextLine());
                                     Gravadora novaGravadora = new Gravadora(nomeGrav);
+                                    listaGravadoras.add(novaGravadora);   SET DIFERENCAS METODO ABSTRATO
 
-                                    listaGravadoras.add(novaGravadora);
-
-                                    boolean addFilmes = true;
-                                    while(addFilmes) {
-                                        System.out.println("""
-                                                [1] - Adicionar um filme à gravadora
-                                                
-                                                [0] - Voltar""");
-
-                                        switch (leitor.nextInt()) {
-                                            case 1:
-                                                System.out.println("Indique o filme:");
-                                                leitor.nextLine();
-                                                String filme = Utils.capitalize(leitor.nextLine());
-
-                                                boolean exist = false;
-                                                for (Filme f : listaFilmes) {
-                                                    if (f.getNome().equals(filme)) {
-                                                        exist = true;
-                                                        System.out.println(f.getNome() + " Adicionado à gravadora!" + "\n");
-                                                        f.setGravadora(novaGravadora);
-                                                        novaGravadora.addFilme(f);
-                                                        break;
-                                                    }
-                                                }
-                                                if (!exist) {
-                                                    System.out.println("O filme não existe." + "\n");
-                                                }
-                                                break;
-
-                                            case 0:
-                                                addFilmes = false;
-                                                System.out.println("Voltando para as configurações de colaborador..." + "\n");
-                                                break;
-                                        }
-                                    }
+                                    Utils.adicionarGravadoras(leitor, listaFilmes, novaGravadora);
                                     break;
 
                                 case 4:
@@ -502,19 +394,7 @@ public class Main {
                                             """);
                                     leitor.nextLine();
                                     String buscaGravadora = Utils.capitalize(leitor.nextLine());
-
-                                    boolean existe = false;
-                                    for (Gravadora g : gravadoras) {
-                                        if (g.getNome().equals(buscaGravadora)) {
-                                            existe = true;
-                                            System.out.println(g.getNome() + " foi removida da lista de gravadoras!" + "\n");
-                                            listaGravadoras.remove(g);
-                                            break;
-                                        }
-                                    }
-                                    if (!existe) {
-                                        System.out.println("Gravadora não existe!" + "\n");
-                                    }
+                                    Utils.removerGravadoras(listaGravadoras, buscaGravadora);
                                     break;
 
                                 case 0:
