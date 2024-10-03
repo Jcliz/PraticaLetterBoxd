@@ -2,7 +2,7 @@
 
 Este repositório representa uma imitação do site/app Letterboxd, aplicando conceitos de Programação Orientada à Objetos vistos em sala.
 
-## O que foi usado
+## O que foi utilizado
 - Herança
 - Polimorfismo
 - Abstração
