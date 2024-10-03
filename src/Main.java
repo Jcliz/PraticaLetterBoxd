@@ -267,100 +267,55 @@ public class Main {
                                                        [6] - Suspense
                                                        [7] - Terror
                                                        """);
-                                    Filme novoFilme;
+                                    Filme novoFilme = null;
 
                                     switch (leitor.nextInt()) {
                                         case 1:
-                                            System.out.println("Nota da mídia para os efeitos especiais:");
-                                            float notaEfeitos = leitor.nextFloat();
-                                            novoFilme = new Acao();
-
-                                            Filme resultAcao = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
-                                            ((Acao) resultAcao).setNotaEfeitos(notaEfeitos);
-                                            listaFilmes.add(resultAcao);
-
-                                            System.out.println("Novo filme de ação criado!" + "\n");
+                                            novoFilme = new Acao(0f, nome, duracao, 0f, direcao,
+                                                    classificacao, new Gravadora(""));
                                             break;
 
                                         case 2:
-                                            System.out.println("Tipo de aventura:");
-                                            String tipoAventura = leitor.nextLine();
-                                            novoFilme = new Aventura();
-
-                                            Filme resultAventura = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
-                                            ((Aventura) resultAventura).setTipoAventura(tipoAventura);
-                                            listaFilmes.add(resultAventura);
-
-                                            listaFilmes.add(resultAventura);
-
-                                            System.out.println("Novo filme de aventura criado!" + "\n");
+                                            novoFilme = new Aventura("", nome, duracao, 0f, direcao,
+                                                    classificacao, new Gravadora(""));
                                             break;
 
                                         case 3:
-                                            System.out.println("Nota da mídia para o humor presente no filme:");
-                                            float notaHumor = leitor.nextFloat();
-                                            novoFilme = new Comedia();
-
-                                            Filme resultComedia = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
-                                            ((Comedia) resultComedia).setNotaHumor(notaHumor);
-                                            listaFilmes.add(resultComedia);
-
-                                            System.out.println("Novo filme de comédia criado!" + "\n");
+                                            novoFilme = new Comedia(0f, nome, duracao, 0f, direcao,
+                                                    classificacao, new Gravadora(""));
                                             break;
 
                                         case 4:
-                                            System.out.println("Tipo do documentário:");
-                                            leitor.nextLine();
-                                            String tipoDoc = leitor.nextLine();
-                                            novoFilme = new Documentario();
-
-                                            Filme resultDoc = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
-                                            ((Documentario) resultDoc).setConteudo(tipoDoc);
-                                            listaFilmes.add(resultDoc);
-
-                                            System.out.println("Novo documentário criado!" + "\n");
+                                            novoFilme = new Documentario("", nome, duracao, 0f, direcao,
+                                                    classificacao, new Gravadora(""));
                                             break;
 
                                         case 5:
-                                            System.out.println("Tipo do romance:");
-                                            String tipoRom = leitor.nextLine();
-                                            novoFilme = new Romance();
-
-                                            Filme resultRomance = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
-                                            ((Romance) resultRomance).setTipoRomance(tipoRom);
-                                            listaFilmes.add(resultRomance);
-
-                                            System.out.println("Novo filme de romance criado!" + "\n");
+                                            novoFilme = new Romance("", nome, duracao, 0f, direcao,
+                                                    classificacao, new Gravadora(""));
                                             break;
 
                                         case 6:
-                                            System.out.println("Nota da mídia para a tensão no filme:");
-                                            leitor.nextLine();
-                                            float notaSusp = leitor.nextFloat();
-                                            novoFilme = new Suspense();
-
-                                            Filme resultSus = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
-                                            ((Suspense) resultSus).setNotaTensao(notaSusp);
-                                            listaFilmes.add(resultSus);
-
-                                            System.out.println("Novo filme de suspense criado!" + "\n");
+                                            novoFilme = new Suspense(0f, nome, duracao, 0f, direcao,
+                                                    classificacao, new Gravadora(""));
                                             break;
 
                                         case 7:
-                                            System.out.println("Nota da mídia para os jumpscares presentes no filme:");
-                                            float notaJump = leitor.nextFloat();
-                                            novoFilme = new Terror();
-
-                                            Filme resultTerror = colab.criarFilme(novoFilme, nome, duracao, direcao, classificacao);
-                                            ((Terror) resultTerror).setNotaJumpscares(notaJump);
-                                            listaFilmes.add(resultTerror);
-
-                                            System.out.println("Novo filme de terror criado!" + "\n");
+                                            novoFilme = new Terror(0f, nome, duracao, 0f, direcao,
+                                                    classificacao, new Gravadora(""));
                                             break;
 
                                         default:
                                             System.out.println("Opção inválida!");
                                             break;
+                                    }
+
+                                    if (novoFilme == null) {
+                                        System.out.println("Um erro inexperado aconteceu.");
+                                        return;
+                                    } else {
+                                        colab.criarFilme(leitor, novoFilme);
+                                        Utils.adicionarFilmes(novoFilme, listaFilmes);
                                     }
                                     break;
 
@@ -382,7 +337,7 @@ public class Main {
                                     leitor.nextLine();
                                     String nomeGrav = Utils.capitalize(leitor.nextLine());
                                     Gravadora novaGravadora = new Gravadora(nomeGrav);
-                                    listaGravadoras.add(novaGravadora);   SET DIFERENCAS METODO ABSTRATO
+                                    listaGravadoras.add(novaGravadora);
 
                                     Utils.adicionarGravadoras(leitor, listaFilmes, novaGravadora);
                                     break;

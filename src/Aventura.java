@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Aventura extends Filme{
     private String tipoAventura;
 
@@ -7,10 +9,6 @@ public class Aventura extends Filme{
         this.tipoAventura = tipoAventura;
     }
 
-    public Aventura (){
-        super();
-    }
-
     @Override
     public String toString () {
         return super.toString() + "\n" +
@@ -18,12 +16,8 @@ public class Aventura extends Filme{
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
     }
 
-    public Filme instanciarFilme(String nome, String duracao, float nota, String direcao,
-                                 int classificacao, Gravadora gravadora) {
-        return new Aventura("", nome, duracao, nota, direcao, classificacao, gravadora);
-    }
-
-    public void setTipoAventura (String tipo) {
-        this.tipoAventura = tipo;
+    public void setDiferencas (Scanner leitor) {
+        System.out.println("Indique o tipo da aventura: ");
+        this.tipoAventura = Utils.capitalize(leitor.nextLine());
     }
 }

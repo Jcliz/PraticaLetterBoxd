@@ -160,7 +160,7 @@ public class Utils {
 
         } else if (opcao.equals("Assistidos")) {
             if (u.pegarListaAssistidos().contains(filme)) {
-                System.out.println(filme.getNome() + " Já foi selecionado!" + "\n");
+                System.out.println(filme.getNome() + " já foi selecionado!" + "\n");
 
             } else {
                 u.addAssistidos(filme);
@@ -168,17 +168,17 @@ public class Utils {
             }
         } else if (opcao.equals("Favoritos")){
             if (u.pegarListaFavoritos().contains(filme)) {
-                System.out.println(filme.getNome() + " Já foi favoritado!" + "\n");
+                System.out.println(filme.getNome() + " já foi favoritado!" + "\n");
 
             } else {
                 u.addFavoritos(filme);
-                System.out.println(filme.getNome() + " Filme favoritado com sucesso!" + "\n");
+                System.out.println(filme.getNome() + " favoritado com sucesso!" + "\n");
             }
         }
     }
 
-    public static void avaliarFilmes (String filmeAva, ArrayList<Filme> listaFilmes, Scanner leitor, Usuario u) {
-        Filme filme = Utils.buscarFilme(filmeAva, listaFilmes);
+    public static void avaliarFilmes (String filmeNome, ArrayList<Filme> listaFilmes, Scanner leitor, Usuario u) {
+        Filme filme = Utils.buscarFilme(filmeNome, listaFilmes);
 
         if (filme == null) {
             System.out.println("Filme inexistente!" + "\n");
@@ -198,8 +198,13 @@ public class Utils {
         }
     }
 
-    public static void adicionarFilmes(){
-
+    public static void adicionarFilmes(Filme filme, ArrayList<Filme> filmes){
+        if (filmes.contains(filme)) {
+            System.out.println(filme.getNome() + " já foi adicionado.");
+        } else {
+            filmes.add(filme);
+            System.out.println(filme.getNome() + " adicionado com sucesso!");
+        }
     }
 
     public static void adicionarGravadoras(Scanner leitor, ArrayList<Filme> listaFilmes, Gravadora novaGravadora) {

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Suspense extends Filme{
     private float notaTensao;
 
@@ -7,10 +9,6 @@ public class Suspense extends Filme{
         this.notaTensao = notaTensao;
     }
 
-    public Suspense (){
-        super();
-    }
-
     @Override
     public String toString () {
         return super.toString() + "\n" +
@@ -18,12 +16,8 @@ public class Suspense extends Filme{
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
     }
 
-    public Filme instanciarFilme(String nome, String duracao, float nota, String direcao,
-                                 int classificacao, Gravadora gravadora) {
-        return new Suspense(0f, nome, duracao, nota, direcao, classificacao, gravadora);
-    }
-
-    public void setNotaTensao (float notaTensao) {
-        this.notaTensao = notaTensao;
+    public void setDiferencas (Scanner leitor) {
+        System.out.println("Nota dada pela mídia para a tensão: ");
+        this.notaTensao = leitor.nextFloat();
     }
 }

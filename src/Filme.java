@@ -1,4 +1,6 @@
-public class Filme {
+import java.util.Scanner;
+
+public abstract class Filme {
     private String nome;
     private String duracao;
     private float nota;
@@ -44,14 +46,7 @@ public class Filme {
         this.nota = nota;
     }
 
-    public Filme instanciarFilme(String nome, String duracao, float nota, String direcao,
-                                 int classificacao, Gravadora gravadora) {
-        return new Filme(nome, duracao, nota, direcao, classificacao, gravadora);
-    }
-
-    public Filme setDiferencas (float notaEfeitos, ) {
-
-    }
+    public abstract void setDiferencas (Scanner leitor);
 
     public void setGravadora (Gravadora gravadora) {
         this.gravadora = gravadora;

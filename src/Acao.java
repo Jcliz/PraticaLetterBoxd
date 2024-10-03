@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Acao extends Filme{
     private float notaEfeitos;
 
@@ -7,10 +9,6 @@ public class Acao extends Filme{
         this.notaEfeitos = notaEfeitos;
     }
 
-    public Acao (){
-        super();
-    }
-
     @Override
     public String toString () {
         return super.toString() + "\n" +
@@ -18,12 +16,8 @@ public class Acao extends Filme{
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
     }
 
-    public Filme instanciarFilme(String nome, String duracao, float nota, String direcao,
-                                int classificacao, Gravadora gravadora) {
-        return new Acao(0f, nome, duracao, nota, direcao, classificacao, gravadora);
-    }
-
-    public void setNotaEfeitos (float notaEfeitos) {
-        this.notaEfeitos = notaEfeitos;
+    public void setDiferencas (Scanner leitor) {
+        System.out.println("Nota da mídia para efeitos especiais:");
+        this.notaEfeitos = leitor.nextFloat();
     }
 }

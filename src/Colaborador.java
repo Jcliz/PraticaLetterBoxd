@@ -1,6 +1,7 @@
-public class Colaborador {
+import java.util.Scanner;
 
-    public Filme criarFilme (Filme f, String nome, String duracao, String direcao, int classificacao) {
-        return f.instanciarFilme(nome, duracao, 0f,  direcao, classificacao, new Gravadora(""));
+public class Colaborador {
+    public void criarFilme (Scanner leitor, Filme filme) {
+        filme.setDiferencas(leitor);
     }
 }

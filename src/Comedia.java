@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Comedia extends Filme{
     private float notaHumor;
 
@@ -7,10 +9,6 @@ public class Comedia extends Filme{
         this.notaHumor = notaHumor;
     }
 
-    public Comedia (){
-        super();
-    }
-
     @Override
     public String toString () {
         return super.toString() + "\n" +
@@ -18,12 +16,8 @@ public class Comedia extends Filme{
                 "-_-_-_-_-_-_-_-_-_-" + "\n";
     }
 
-    public Filme instanciarFilme(String nome, String duracao, float nota, String direcao,
-                                 int classificacao, Gravadora gravadora) {
-        return new Comedia(0f, nome, duracao, nota, direcao, classificacao, gravadora);
-    }
-
-    public void setNotaHumor (float notaHumor) {
-        this.notaHumor = notaHumor;
+    public void setDiferencas (Scanner leitor) {
+        System.out.println("Nota do humor dada pela mídia:");
+        this.notaHumor = leitor.nextFloat();
     }
 }
