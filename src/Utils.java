@@ -207,58 +207,6 @@ public class Utils {
         }
     }
 
-    public static void adicionarGravadoras(Scanner leitor, ArrayList<Filme> listaFilmes, Gravadora novaGravadora) {
-        boolean addFilmes = true;
-        while(addFilmes) {
-            System.out.println("""
-             [1] - Adicionar um filme à gravadora
-             
-             [0] - Voltar""");
-
-            switch (leitor.nextInt()) {
-                case 1:
-                    System.out.println("Indique o filme:");
-                    leitor.nextLine();
-                    String filme = Utils.capitalize(leitor.nextLine());
-
-                    for (Filme f : listaFilmes) {
-                        if (f.getNome().equals(filme)) {
-                            System.out.println(f.getNome() + " Adicionado à gravadora!" + "\n");
-                            f.setGravadora(novaGravadora);
-                            novaGravadora.addFilme(f);
-                        }
-                    }
-
-                case 0:
-                    addFilmes = false;
-                    System.out.println("Voltando para as configurações de colaborador..." + "\n");
-                    break;
-            }
-        }
-    }
-
-    public static void removerFilmes(ArrayList<Filme> listaFilmes, String nome){
-        Filme filme = Utils.buscarFilme(nome, listaFilmes);
-        listaFilmes.remove(filme);
-        if (filme == null) {
-            System.out.println("Filme inexistente!" + "\n");
-
-        } else {
-            System.out.println(filme.getNome() + " foi removido dos filmes!" + "\n");
-        }
-    }
-
-    public static void removerGravadoras(ArrayList<Gravadora> listaGravadoras, String nome) {
-        Gravadora g = Utils.buscarGravadora(nome, listaGravadoras);
-        listaGravadoras.remove(g);
-        if (g == null) {
-            System.out.println("Filme inexistente!" + "\n");
-
-        } else {
-            System.out.println(g.getNome() + " foi removido das gravadoras!" + "\n");
-        }
-    }
-
     public static Filme buscarFilme(String nomeFilme, ArrayList<Filme> filmes) {
         for (Filme f : filmes) {
             if (f.getNome().equals(Utils.capitalize(nomeFilme))) {

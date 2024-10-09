@@ -15,11 +15,15 @@ public class Gravadora {
                 "Nome: " + this.nome + "\n" +
                 "Filmes: " + "\n" +
                 this.filmes.toString() + "\n" +
-                "--__--__--__--__--__--__--__--" + "\n";
+                "\n";
     }
 
     public void addFilme (Filme filme) {
         filmes.add(filme);
+    }
+
+    public void removeFilme (Filme filme) {
+        filmes.remove(filme);
     }
 
     public String getNome() {

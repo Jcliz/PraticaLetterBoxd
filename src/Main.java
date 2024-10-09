@@ -29,9 +29,9 @@ public class Main {
                         0f, "Jonah Hill", 18, gravadoras[2]),
                 new Comedia(6.3f, "Lady Bird", "1 hora e 34 minutos",
                         0f, "Greta Gerwig", 16, gravadoras[2]),
-                new Romance("Amor entre diferentes classes", "Diário de Uma Paixão",
+                new Romance("Amor entre diferentes classes", "Diário De Uma Paixão",
                         "2 horas e 3 minutos", 0f, "Nick Cassavetes", 16, gravadoras[0]),
-                new Terror(4.7f, "A bruxa", "1 hora e 40 minutos",
+                new Terror(4.7f, "A Bruxa", "1 hora e 40 minutos",
                         0f, "Robert Eggers", 18, gravadoras[1])
         };
 
@@ -183,6 +183,7 @@ public class Main {
 
                                 case 9:
                                     leitor.nextLine();
+                                    System.out.println(listaGravadoras);
                                     System.out.println("Indique a gravadora: ");
                                     String nomeGravadora = Utils.capitalize(leitor.nextLine());
 
@@ -326,7 +327,7 @@ public class Main {
                                             """);
                                     leitor.nextLine();
                                     String nomeRemov = Utils.capitalize(leitor.nextLine());
-                                    Utils.removerFilmes(listaFilmes, nomeRemov);
+                                    colab.removerFilmes(listaFilmes, nomeRemov);
                                     break;
 
                                 case 3:
@@ -339,7 +340,7 @@ public class Main {
                                     Gravadora novaGravadora = new Gravadora(nomeGrav);
                                     listaGravadoras.add(novaGravadora);
 
-                                    Utils.adicionarGravadoras(leitor, listaFilmes, novaGravadora);
+                                    colab.adicionarGravadoras(leitor, listaFilmes, novaGravadora);
                                     break;
 
                                 case 4:
@@ -349,7 +350,7 @@ public class Main {
                                             """);
                                     leitor.nextLine();
                                     String buscaGravadora = Utils.capitalize(leitor.nextLine());
-                                    Utils.removerGravadoras(listaGravadoras, buscaGravadora);
+                                    colab.removerGravadoras(listaGravadoras, buscaGravadora, listaFilmes);
                                     break;
 
                                 case 0:
