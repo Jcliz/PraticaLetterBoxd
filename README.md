@@ -1,6 +1,6 @@
 ## Contextualização
 
-Este repositório representa uma imitação do site/app Letterboxd, aplicando conceitos de Programação Orientada à Objetos vistos em sala.
+Este repositório representa uma réplica do site/app Letterboxd, aplicando conceitos de Programação Orientada à Objetos vistos em sala.
 
 ## O que foi utilizado
 - Herança
