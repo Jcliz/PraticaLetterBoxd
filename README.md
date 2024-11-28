@@ -9,4 +9,4 @@ Este repositório representa uma réplica do site/app Letterboxd, aplicando conc
 - Encapsulamento
 
 ### Pré requisitos
-- Java(TM) SE Devolepment Kit 22.0.2 ou maior.
+- Java 22.0.2 ou maior.
